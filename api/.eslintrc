@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "prettier"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "tests/**/*"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}

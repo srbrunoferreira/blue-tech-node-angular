@@ -1,0 +1,6 @@
+export * from './contact_controller.ts'
+export * from './contact_model.ts'
+export * from './contact_routes.ts'
+export * from './contact_service.ts'
+export * from './contact_validator.ts'
+export * from './contact_repository.ts'
