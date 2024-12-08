@@ -3,6 +3,7 @@ import { Container } from 'inversify'
 import database from './database.ts'
 import contactRouter from './app/contacts/contact_routes.ts'
 import {
+  configureCors,
   configureServer,
   configureSwagger,
   errorHandler
@@ -27,6 +28,8 @@ server.setErrorConfig((app: any) => {
 })
 
 const api = server.build()
+
+configureCors(api)
 
 api.use(contactRouter)
 

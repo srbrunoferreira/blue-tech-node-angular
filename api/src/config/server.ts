@@ -20,7 +20,7 @@ export function errorHandler(app: express.Application) {
       next: express.NextFunction
     ) => {
       console.error(err.stack)
-      response.status(500).send('Something broke!')
+      response.status(500).json({ code: 'internal-error' })
     }
   )
 }
@@ -70,4 +70,16 @@ export function configureSwagger(app: any) {
       }
     })
   )
+}
+
+export function configureCors(app: express.Application) {
+  app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader(
+      'Access-Control-Allow-Methods',
+      'GET, POST, PUT, DELETE, OPTIONS'
+    )
+    res.setHeader('Access-Control-Allow-Headers', '*')
+    next()
+  })
 }

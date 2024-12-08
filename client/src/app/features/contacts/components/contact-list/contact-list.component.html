@@ -1,0 +1,24 @@
+<div class="max-h-[500px] overflow-y-auto">
+  <div class="flex flex-col gap-6">
+    <div *ngFor="let contact of contacts">
+      <app-contact
+        [contact]="contact"
+        (delete)="deleteContact(contact.id)"
+      ></app-contact>
+    </div>
+  </div>
+</div>
+
+<button
+  (click)="openModal()"
+  class="mt-6 flex items-center justify-center gap-2 w-full rounded-lg hover:bg-black/5 transition-colors py-2 text-sm font-medium h-[39.33px]"
+>
+  <ng-icon name="heroPlus"></ng-icon>
+  Add new contact
+</button>
+
+<app-contact-create-modal
+  *ngIf="showModal"
+  (contactCreated)="onContactCreated($event)"
+  (modalClosed)="closeModal()"
+></app-contact-create-modal>

@@ -1,0 +1,12 @@
+// import { NgModule } from '@angular/core';
+// import { BrowserModule } from '@angular/platform-browser';
+// import { RouterOutlet } from '@angular/router';
+// import { FormsModule } from '@angular/forms';
+// import { CommonModule } from '@angular/common';
+// import { API_URL } from './app.config';
+
+// @NgModule({
+//   imports: [FormsModule, BrowserModule, RouterOutlet, CommonModule],
+//   providers: [{ provide: API_URL, useValue: 'http://localhost:9090' }],
+// })
+// export class AppModule {}

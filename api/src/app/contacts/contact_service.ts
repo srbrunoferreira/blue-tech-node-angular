@@ -8,7 +8,9 @@ export default class ContactService {
   }
 
   async getContactById(contactId: number) {
-    return this.contactRepository.findContactById(contactId)
+    const db_res = await this.contactRepository.findContactById(contactId)
+
+    return db_res
   }
 
   async createContact(contactData: {
@@ -40,6 +42,8 @@ export default class ContactService {
   }
 
   async getAllContacts() {
-    return this.contactRepository.findAllContacts()
+    const db_res = await this.contactRepository.findAllContacts()
+
+    return db_res
   }
 }

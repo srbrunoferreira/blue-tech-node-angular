@@ -1,0 +1,15 @@
+<div class="bg-white p-6 rounded-lg border border-gray-100 w-full relative">
+  <h2 class="text-lg font-semibold text-black">{{ contact.full_name }}</h2>
+
+  <div class="">
+    <p class="text-gray-600 text-sm font-medium">+{{ contact.phone }}</p>
+    <p class="text-gray-600 text-sm font-medium">{{ contact.email }}</p>
+  </div>
+
+  <button
+    (click)="deleteContact()"
+    class="absolute top-6 right-6 hover:bg-black/5 p-1 rounded-full flex items-center justify-center"
+  >
+    <ng-icon name="heroTrash"></ng-icon>
+  </button>
+</div>
