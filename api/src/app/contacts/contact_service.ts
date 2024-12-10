@@ -1,3 +1,4 @@
+import { ContactModel } from './contact_model.ts'
 import ContactRepository from './contact_repository.ts'
 
 export default class ContactService {
@@ -7,10 +8,10 @@ export default class ContactService {
     this.contactRepository = contactRepository
   }
 
-  async getContactById(contactId: number) {
+  async getContactById(contactId: number): Promise<ContactModel> {
     const db_res = await this.contactRepository.findContactById(contactId)
 
-    return db_res
+    return db_res as unknown as ContactModel
   }
 
   async createContact(contactData: {
@@ -44,6 +45,6 @@ export default class ContactService {
   async getAllContacts() {
     const db_res = await this.contactRepository.findAllContacts()
 
-    return db_res
+    return db_res.map((a) => a.dataValues)
   }
 }

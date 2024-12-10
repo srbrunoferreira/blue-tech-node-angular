@@ -2,11 +2,12 @@ import { DataTypes } from 'sequelize'
 import database from '../../database.ts'
 import { ApiModel, ApiModelProperty } from 'swagger-express-ts'
 
-@ApiModel({
-  description: 'Version description',
-  name: 'Contact'
-})
-export class ContactModel {}
+export interface ContactModel {
+  id: number
+  full_name: string
+  phone: string
+  email: string
+}
 
 const Contact = database.define(
   'contacts',

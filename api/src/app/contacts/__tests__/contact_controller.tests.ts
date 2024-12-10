@@ -11,8 +11,8 @@ import {
 import ContactService from '../contact_service.ts'
 import ContactValidator from '../contact_validator.ts'
 import ContactController from '../contact_controller.ts'
+import contacts from '../../../data/tests_data.ts'
 
-// Mocking the validationResult function from express-validator
 jest.mock('express-validator', () => ({
   validationResult: jest.fn().mockReturnValue({
     isEmpty: jest.fn().mockReturnValue(true),
@@ -27,29 +27,16 @@ describe('ContactController', () => {
 
   beforeEach(() => {
     contactService = mock<ContactService>()
-
-    // Mocking the return values using .mockResolvedValue
-    ;(contactService.getAllContacts as jest.Mock).mockResolvedValue([
-      {
-        id: 1,
-        full_name: 'John Doe',
-        email: 'john@example.com',
-        phone: '12345'
-      },
-      {
-        id: 2,
-        full_name: 'Jane Doe',
-        email: 'jane@example.com',
-        phone: '67890'
-      }
-    ] as never)
-
-    ;(contactService.getContactById as jest.Mock).mockResolvedValue({
-      id: 1,
-      full_name: 'John Doe',
-      email: 'john@example.com',
-      phone: '12345'
-    } as never)
+    ;(
+      contactService.getAllContacts as jest.Mock<
+        typeof contactService.getAllContacts
+      >
+    ).mockResolvedValue(contacts)
+    ;(
+      contactService.getContactById as jest.Mock<
+        typeof contactService.getContactById
+      >
+    ).mockResolvedValue(contacts[0])
 
     contactValidator = mock<ContactValidator>()
     contactController = new ContactController(contactService, contactValidator)
@@ -101,7 +88,6 @@ describe('ContactController', () => {
     })
 
     it('should return 404 if contact not found', async () => {
-      // Mocking getContactById to return null
       ;(contactService.getContactById as jest.Mock).mockResolvedValue(
         null as never
       )
@@ -119,6 +105,4 @@ describe('ContactController', () => {
       expect(res.json).toHaveBeenCalledWith({ message: 'Contact not found' })
     })
   })
-
-  // Add other tests for the remaining methods...
 })

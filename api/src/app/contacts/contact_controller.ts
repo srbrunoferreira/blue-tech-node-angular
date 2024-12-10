@@ -42,9 +42,8 @@ export default class ContactController {
     next: NextFunction
   ): Promise<void> {
     const contacts = await this.contactService.getAllContacts()
-    console.log('contacts', contacts)
 
-    res.json(contacts.map(a => a.dataValues))
+    res.json(contacts)
   }
 
   @ApiOperationGet({
